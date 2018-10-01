@@ -1,0 +1,138 @@
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+a {
+    color: #5D6975;
+    text-decoration: underline;
+}
+
+body {
+    position: relative;
+    width: 19cm;
+    height: 29.7cm;
+    margin: 0 auto;
+    color: #001028;
+    background: #FFFFFF;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-family: Arial;
+}
+
+header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 0.01em solid #5D6975;
+}
+
+#logo {
+    border-top: 1px solid  #5D6975;
+    border-bottom: 1px solid  #5D6975;
+    background: url('../img/dimension.png');
+    margin: 0 0 20px 0;
+}
+
+#logo img {
+    width: 80px;
+    position: absolute;
+    top: 18px;
+    left: 10px;
+}
+
+h1 {
+    color: #5D6975;
+    font-size: 2.4em;
+    line-height: 1.4em;
+    font-weight: normal;
+    text-align: center;
+    margin:10px 0;
+}
+
+#project {
+    float: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+}
+
+table thead tr th,
+table tbody tr td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #5D6975;
+}
+
+table thead tr th {
+    white-space: nowrap;
+}
+
+table tbody tr td {
+    vertical-align: middle;
+}
+
+table thead tr th.number,
+table tbody tr td.number,
+table thead tr th.money,
+table tbody tr td.money {
+    width: 100px;
+}
+
+table tbody tr td.money {
+    text-align: right;
+}
+
+table tbody tr td.number {
+    text-align: center;
+}
+
+table.resumen {
+    width: 40% !important;
+    margin: 0 auto;
+}
+
+table.insumos {
+    width: 50% !important;
+    margin: 0 auto;
+}
+
+th.title {
+    font-size: 14px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-red {
+    color: #dd4b39;
+}
+
+.text-green {
+    color: #00a65a;
+}
+
+.bg-red {
+    background-color: #f2dede;
+}
+
+.bg-green {
+    background-color: #dff0d8;
+}
+
+.bg-blue {
+    background-color: #d9edf7;
+}
