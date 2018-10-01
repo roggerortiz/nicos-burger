@@ -3,7 +3,7 @@
         <h3 class="box-title">Ventas</h3>
         <div class="box-tools pull-right">
             <a href="{{ route('inicio') }}" class="btn btn-success btn-sm">
-                <i class="fa fa-arrow-circle-o-left"></i>&nbsp;&nbsp;&nbsp;Volver
+                <i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Volver
             </a>&nbsp;&nbsp;
             <button type="button" id="btn-nuevo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalVenta">
                 <i class="fa fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Nueva
@@ -45,7 +45,7 @@
                         <td class="text-center">{{ $venta->precio }}</td>
                         <td class="text-center">{{ $venta->total }}</td>
                         <td class="action">
-                            <button type="button" class="btn btn-warning btn-editar btn-sm" title="Editar" data-toggle="modal" data-target="#modalVenta" data-id="{{ $venta->id }}" data-prod="{{ $venta->producto }}" data-cant="{{ $venta->cantidad }}">
+                            <button type="button" class="btn btn-warning btn-editar btn-sm" title="Editar" data-toggle="modal" data-target="#modalVenta" data-id="{{ $venta->id }}" data-prod="{{ $venta->producto_id }}" data-cant="{{ $venta->cantidad }}">
                                 <span class="fa fa-pencil-square-o"></span>
                             </button>
                         </td>

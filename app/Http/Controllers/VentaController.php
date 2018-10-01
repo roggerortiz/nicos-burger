@@ -46,12 +46,25 @@ class VentaController extends Controller
     public function editar()
     {
         $this->validate(request(), [
+            'producto_id' => 'required|integer',
             'cantidad' => 'required|integer|min:1',
         ], [
+            'producto_id.required' => 'Este campo es requerido',
+            'producto_id.integer' => 'Este campo debe ser entero',
             'cantidad.required' => 'Este campo es requerido',
             'cantidad.integer' => 'Este campo debe ser entero',
             'cantidad.min' => 'El valor mínimo de este campo es 1',
         ]);
+
+        $producto = Producto::find(request('producto_id'));
+
+        if(is_null($producto)) {
+            return ['success' => false, 'errors' => [
+                'producto_id' => [
+                    'Producto no registrado.'
+                ]
+            ]];
+        }
 
         $venta = Venta::find(request('venta_id'));
 
@@ -63,7 +76,8 @@ class VentaController extends Controller
             ]];
         }
 
-        $venta->cantidad = request('cantidad');
+        $venta->fill(request()->all());
+        $venta->producto = $producto->nombre;
         $venta->save();
 
         $this->actualizar_totales(request('registro_id'));
@@ -85,7 +99,7 @@ class VentaController extends Controller
 
         $venta->delete();
 
-        $this->actualizar_totales(request('registro_id'));
+        $this->actualizar_totales($venta->registro_id);
 
         return ['success' => true];
     }

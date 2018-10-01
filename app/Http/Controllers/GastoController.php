@@ -69,7 +69,7 @@ class GastoController extends Controller
 
         $gasto->delete();
 
-        $this->actualizar_totales(request('registro_id'));
+        $this->actualizar_totales($gasto->registro_id);
 
         return ['success' => true];
     }

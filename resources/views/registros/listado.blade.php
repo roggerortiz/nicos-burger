@@ -30,12 +30,12 @@
                         <td class="text-center">{{ $registro->ganancia }}</td>
                         <td class="action">
                             <a href="{{ route('registros.ventas', ['id' => $registro->id]) }}" class="btn btn-success btn-sm" title="Ventas">
-                                <span class="fa fa-money"></span>
+                                <span class="fa fa-shopping-cart"></span>
                             </a>
                         </td>
                         <td class="action">
                             <a href="{{ route('registros.gastos', ['id' => $registro->id]) }}" class="btn btn-warning btn-sm" title="Gastos">
-                                <span class="fa fa-arrow-circle-o-down"></span>
+                                <span class="fa fa-money"></span>
                             </a>
                         </td>
                         <td class="action">

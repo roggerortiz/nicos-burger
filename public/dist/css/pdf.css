@@ -91,12 +91,7 @@ table tbody tr td.number {
     text-align: center;
 }
 
-table.resumen {
-    width: 40% !important;
-    margin: 0 auto;
-}
-
-table.insumos {
+table.table-middle {
     width: 50% !important;
     margin: 0 auto;
 }

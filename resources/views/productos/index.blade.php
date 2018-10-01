@@ -147,7 +147,7 @@
                 }
             }).fail(function (result) {
                 var errors = JSON.parse(result.responseText).errors;
-                console.log(result.responseText);
+
                 $.each(errors, function (indexError, messages) {
                     $.each(messages, function (indexMessage, value) {
                         $('#'+indexError).parent().append($('<label class="label-error text-red">').html(value));

@@ -17,7 +17,7 @@ class RegistroController extends Controller
 {
     public function index()
     {
-        $registros = Registro::orderBy('fecha', 'desc')->paginate(1);
+        $registros = Registro::orderBy('fecha', 'desc')->paginate(10);
 
         if(request()->ajax()) {
             return view('registros.listado', compact('registros'));
@@ -43,12 +43,12 @@ class RegistroController extends Controller
 
         $gastos = Gasto::where('registro_id', $registro_id)->get();
 
-        $insumos = Insumo::distinct()->select(DB::raw('insumos.nombre, SUM(insumo_producto.cantidad) as cantidad'))
+        $insumos = Insumo::select(DB::raw('insumos.id, insumos.nombre, SUM(insumo_producto.cantidad * ventas.cantidad) as cantidad'))
             ->join('insumo_producto', 'insumo_producto.insumo_id', '=', 'insumos.id')
             ->join('productos', 'productos.id', '=', 'insumo_producto.producto_id')
             ->join('ventas', 'ventas.producto_id', '=', 'productos.id')
             ->where('ventas.registro_id', $registro_id)
-            ->groupBy('insumos.nombre')->groupBy('insumo_producto.cantidad')->get();
+            ->groupBy('insumos.id')->groupBy('insumos.nombre')->get();
 
         // return view('registros.reporte', compact('registro', 'ventas', 'gastos', 'insumos'));
 

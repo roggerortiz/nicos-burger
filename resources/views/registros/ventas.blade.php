@@ -89,7 +89,7 @@
             $('#modalVentaLabel').html('Nueva Venta');
             $('#form-venta').attr('action', '{{ route('ventas.crear') }}');
             $('#venta_id').val('');
-            $('#producto_id').val('').removeAttr('disabled');
+            $('#producto_id').val('');
             $('#cantidad').val(1);
         });
 
@@ -98,7 +98,7 @@
             $('#modalVentaLabel').html('Editar Venta');
             $('#form-venta').attr('action', '{{ route('ventas.editar') }}');
             $('#venta_id').val($(this).attr('data-id'));
-            $('#producto_id').val('').attr('disabled', true);
+            $('#producto_id').val($(this).attr('data-prod'));
             $('#cantidad').val($(this).attr('data-cant'));
         });
 

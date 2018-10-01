@@ -60,7 +60,7 @@
 </header>
 
 <main>
-    <table>
+    <table class="table-middle">
         <thead>
         <tr>
             <th>Descripción</th>
@@ -91,7 +91,7 @@
 </header>
 
 <main>
-    <table class="resumen">
+    <table class="table-middle">
         <thead>
         <tr>
             <th>VENTAS</th>
@@ -119,7 +119,7 @@
 </header>
 
 <main>
-    <table class="insumos">
+    <table class="table-middle">
         <thead>
         <tr>
             <th>Nombre</th>

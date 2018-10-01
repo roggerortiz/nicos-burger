@@ -3,7 +3,7 @@
         <h3 class="box-title">Gastos</h3>
         <div class="box-tools pull-right">
             <a href="{{ route('inicio') }}" class="btn btn-success btn-sm">
-                <i class="fa fa-arrow-circle-o-left"></i>&nbsp;&nbsp;&nbsp;Volver
+                <i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Volver
             </a>&nbsp;&nbsp;
             <button type="button" id="btn-nuevo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalGasto">
                 <i class="fa fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Nuevo
