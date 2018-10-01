@@ -22,8 +22,8 @@ body {
 }
 
 header {
-    padding: 10px 0;
-    margin-bottom: 20px;
+    padding: 5px 0;
+    margin-bottom: 15px;
     border-bottom: 0.01em solid #5D6975;
 }
 
@@ -35,15 +35,15 @@ header {
 }
 
 #logo img {
-    width: 80px;
+    width: 70px;
     position: absolute;
-    top: 18px;
+    top: 10px;
     left: 10px;
 }
 
 h1 {
     color: #5D6975;
-    font-size: 2.4em;
+    font-size: 1.8em;
     line-height: 1.4em;
     font-weight: normal;
     text-align: center;
@@ -58,7 +58,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 table thead tr th,
@@ -93,7 +93,7 @@ table tbody tr td.number {
 
 table.table-middle {
     width: 50% !important;
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
 }
 
 th.title {

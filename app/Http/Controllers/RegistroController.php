@@ -50,7 +50,7 @@ class RegistroController extends Controller
             ->where('ventas.registro_id', $registro_id)
             ->groupBy('insumos.id')->groupBy('insumos.nombre')->get();
 
-        // return view('registros.reporte', compact('registro', 'ventas', 'gastos', 'insumos'));
+        // return view('registros.reporte', compact('registro', 'categorias', 'gastos', 'insumos'));
 
         $view = view('registros.reporte', compact('registro', 'categorias', 'gastos', 'insumos'))->render();
 

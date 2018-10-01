@@ -13,4 +13,14 @@ class Registro extends Model
     {
         return Carbon::parse($this->attributes['fecha'])->format('d/m/Y');
     }
+
+    public function getDiaAttribute()
+    {
+        $dias = [
+            'Mon' => 'Lunes', 'Tue' => 'Martes', 'Wed' => 'Miércoles',
+            'Thu' => 'Jueves', 'Fri' => 'Viernes', 'Sat' => 'Sábado', 'Sun' => 'Domingo'
+        ];
+
+        return $dias[Carbon::parse($this->attributes['fecha'])->format('D')];
+    }
 }

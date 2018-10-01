@@ -9,7 +9,7 @@
 <header class="clearfix">
     <div id="logo">
         <img src="{{ asset('dist/img/logo3.png') }}">
-        <h1>Reporte {{ $registro->fecha }}</h1>
+        <h1>Reporte {{ $registro->dia }} {{ $registro->fecha }}</h1>
     </div>
     <div id="project">
         <strong>VENTAS</strong>
@@ -108,8 +108,6 @@
         </tbody>
     </table>
 </main>
-
-<br><br>
 
 <header class="clearfix">
     <div id="project"></div>
