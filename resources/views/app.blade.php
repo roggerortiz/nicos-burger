@@ -59,16 +59,15 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
-                        <a href="{{ route('registros') }}">
+                        <a href="{{ route('inicio') }}">
                             <i class="fa fa-dashboard"></i> <span>Inicio</span>
                         </a>
                     </li>
-                    {{--
                     <li>
                         <a href="{{ route('registros') }}">
                             <i class="fa fa-list-alt"></i> <span>Registros</span>
                         </a>
-                    </li>--}}
+                    </li>
                     <li>
                         <a href="{{ route('insumos') }}">
                             <i class="fa fa-apple"></i> <span>Insumos</span>

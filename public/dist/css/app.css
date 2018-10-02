@@ -37,6 +37,17 @@ ul.pagination {
     margin-top: 7px !important;
 }
 
+.content-grafica {
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.highcharts-container,
+.highcharts-container svg {
+    width: 100% !important;
+}
+
 @media (min-width: 200px){
     .form-inline.form-inline-box .form-control {
         display: inline-block !important;

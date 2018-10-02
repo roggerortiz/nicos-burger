@@ -11,8 +11,8 @@
 |
 */
 
-//Route::get('/', 'HomeController@index')->name('inicio');
-Route::get('/', 'RegistroController@index')->name('inicio');
+Route::get('/', 'HomeController@index')->name('inicio');
+Route::get('/graficas', 'HomeController@graficas')->name('graficas');
 
 Route::get('/productos', 'ProductoController@index')->name('productos');
 Route::post('/productos/crear', 'ProductoController@crear')->name('productos.crear');
