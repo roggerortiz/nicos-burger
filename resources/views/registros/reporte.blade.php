@@ -34,7 +34,7 @@
                     <tr>
                         @if($categoria->ventas->first()->id == $venta->id)
                             <td rowspan="{{ $categoria->ventas->count() }}">
-                                <b>{{ strtoupper($categoria->nombre) }}</b>
+                                {{ $categoria->nombre }}
                             </td>
                         @endif
                         <td>{{ $venta->descripcion }}</td>
@@ -137,9 +137,9 @@
         </thead>
         <tbody>
         <tr>
-            <td class="money"><b>S/ {{ $registro->ingresos }}</b></td>
-            <td class="money"><b>S/ {{ $registro->egresos }}</b></td>
-            <td class="money"><b>S/ {{ $registro->total }}</b></td>
+            <td class="money">S/ {{ $registro->ingresos }}</td>
+            <td class="money">S/ {{ $registro->egresos }}</td>
+            <td class="money">S/ {{ $registro->total }}</td>
         </tr>
         </tbody>
     </table>
