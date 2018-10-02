@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/', 'HomeController@index')->name('inicio');
+
 Route::get('/productos', 'ProductoController@index')->name('productos');
 Route::post('/productos/crear', 'ProductoController@crear')->name('productos.crear');
 Route::post('/productos/editar', 'ProductoController@editar')->name('productos.editar');
@@ -26,16 +28,18 @@ Route::post('/insumos/crear', 'InsumoController@crear')->name('insumos.crear');
 Route::post('/insumos/editar', 'InsumoController@editar')->name('insumos.editar');
 Route::post('/insumos/eliminar', 'InsumoController@eliminar')->name('insumos.eliminar');
 
-Route::get('/', 'RegistroController@index')->name('inicio');
-Route::get('/registros/{id}/reporte', 'RegistroController@reporte')->name('registros.reporte');
-Route::get('/registros/{id}/ventas', 'RegistroController@ventas')->name('registros.ventas');
-Route::get('/registros/{id}/gastos', 'RegistroController@gastos')->name('registros.gastos');
+Route::get('/registros', 'RegistroController@index')->name('registros');
 Route::post('/registros/crear', 'RegistroController@crear')->name('registros.crear');
+Route::get('/registros/{id}/reporte', 'RegistroController@reporte')->name('registros.reporte');
+
+Route::get('/registros/{id}/movimientos', 'MovimientoController@index')->name('registros.movimientos');
+Route::post('/movimientos/eliminar', 'MovimientoController@eliminar')->name('movimientos.eliminar');
 
 Route::post('/ventas/crear', 'VentaController@crear')->name('ventas.crear');
 Route::post('/ventas/editar', 'VentaController@editar')->name('ventas.editar');
-Route::post('/ventas/eliminar', 'VentaController@eliminar')->name('ventas.eliminar');
+
+Route::post('/compras/crear', 'CompraController@crear')->name('compras.crear');
+Route::post('/compras/editar', 'CompraController@editar')->name('compras.editar');
 
 Route::post('/gastos/crear', 'GastoController@crear')->name('gastos.crear');
 Route::post('/gastos/editar', 'GastoController@editar')->name('gastos.editar');
-Route::post('/gastos/eliminar', 'GastoController@eliminar')->name('gastos.eliminar');

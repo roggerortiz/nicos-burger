@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Gasto;
+use App\Movimiento;
 use App\Registro;
-use App\Venta;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,13 +15,13 @@ class Controller extends BaseController
 
     public function actualizar_totales($registro_id)
     {
-        $total_ventas = Venta::where('registro_id', $registro_id)->get()->sum('total');
-        $total_gastos = Gasto::where('registro_id', $registro_id)->get()->sum('monto');
+        $ingresos = Movimiento::where('signo', '1')->where('registro_id', $registro_id)->get()->sum('total');
+        $egresos = Movimiento::where('signo', '-1')->where('registro_id', $registro_id)->get()->sum('total');
 
         $registro = Registro::find($registro_id);
-        $registro->ventas = $total_ventas;
-        $registro->gastos = $total_gastos;
-        $registro->ganancia = $total_ventas - $total_gastos;
+        $registro->ingresos = $ingresos;
+        $registro->egresos = $egresos;
+        $registro->total = $ingresos - $egresos;
         $registro->save();
     }
 }

@@ -8,8 +8,8 @@
 <body>
 <header class="clearfix">
     <div id="logo">
-        <img src="{{ asset('dist/img/logo3.png') }}">
-        <h1>Reporte {{ $registro->dia }} {{ $registro->fecha }}</h1>
+        <img src="{{ asset('dist/img/logo2.png') }}">
+        <h1>Informe - {{ $registro->dia }} {{ $registro->fecha }}</h1>
     </div>
     <div id="project">
         <strong>VENTAS</strong>
@@ -37,9 +37,9 @@
                                 <b>{{ strtoupper($categoria->nombre) }}</b>
                             </td>
                         @endif
-                        <td>{{ $venta->producto }}</td>
+                        <td>{{ $venta->descripcion }}</td>
                         <td class="number">{{ $venta->cantidad }}</td>
-                        <td class="money">{{ $venta->precio }}</td>
+                        <td class="money">{{ $venta->monto }}</td>
                         <td class="money">{{ $venta->total }}</td>
                     </tr>
                 @endforeach
@@ -55,12 +55,47 @@
 
 <header class="clearfix">
     <div id="project">
+        <strong>COMPRAS</strong>
+    </div>
+</header>
+
+<main>
+    <table class="w-80">
+        <thead>
+        <tr>
+            <th>Insumo</th>
+            <th class="number">Cantidad</th>
+            <th class="money">Precio</th>
+            <th class="money">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if($compras->count() > 0)
+            @foreach($compras as $compra)
+                <tr>
+                    <td>{{ $compra->descripcion }}</td>
+                    <td class="number">{{ $compra->cantidad }}</td>
+                    <td class="money">{{ $compra->monto }}</td>
+                    <td class="money">{{ $compra->total }}</td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="4">No se encontraron compras registradas.</td>
+            </tr>
+        @endif
+        </tbody>
+    </table>
+</main>
+
+<header class="clearfix">
+    <div id="project">
         <strong>GASTOS</strong>
     </div>
 </header>
 
 <main>
-    <table class="table-middle">
+    <table class="w-50">
         <thead>
         <tr>
             <th>Descripción</th>
@@ -91,55 +126,60 @@
 </header>
 
 <main>
-    <table class="table-middle">
+    <table class="w-50">
         <thead>
         <tr>
-            <th>VENTAS</th>
-            <th>GASTOS</th>
-            <th>{{ ($registro->ganancia > 0) ? 'GANANCIA' : 'PÉRDIDA' }}</th>
+            <th>INGRESOS</th>
+            <th>EGRESOS</th>
+            <th>{{ ($registro->total > 0) ? 'GANANCIA' : 'PÉRDIDA' }}</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td class="money"><b>S/ {{ $registro->ventas }}</b></td>
-            <td class="money"><b>S/ {{ $registro->gastos }}</b></td>
-            <td class="money"><b>S/ {{ $registro->ganancia }}</b></td>
+            <td class="money"><b>S/ {{ $registro->ingresos }}</b></td>
+            <td class="money"><b>S/ {{ $registro->egresos }}</b></td>
+            <td class="money"><b>S/ {{ $registro->total }}</b></td>
         </tr>
         </tbody>
     </table>
 </main>
 
-<header class="clearfix">
-    <div id="project"></div>
-    <div id="project">
-        <strong>INSUMOS CONSUMIDOS</strong>
-    </div>
-</header>
+<div class="page-break">
+    <header class="clearfix">
+        <div id="project"></div>
+        <div id="project">
+            <strong>INSUMOS CONSUMIDOS</strong>
+        </div>
+    </header>
 
-<main>
-    <table class="table-middle">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-        </tr>
-        </thead>
-        <tbody>
-        @if($insumos->count() > 0)
-            @foreach($insumos as $insumo)
-                <tr>
-                    <td>{{ $insumo->nombre }}</td>
-                    <td class="number">{{ $insumo->cantidad }}</td>
-                </tr>
-            @endforeach
-        @else
+    <main class="">
+        <table class="w-60">
+            <thead>
             <tr>
-                <td colspan="2">No se encontraron insumos.</td>
+                <th>Nombre</th>
+                <th>Cant. Inicial</th>
+                <th>Cant. Consumida</th>
+                <th>Cant. Final</th>
             </tr>
-        @endif
-        </tbody>
-    </table>
-</main>
-
+            </thead>
+            <tbody>
+            @if($insumos->count() > 0)
+                @foreach($insumos as $insumo)
+                    <tr>
+                        <td>{{ $insumo->nombre }}</td>
+                        <td class="number">{{ $insumo->cantidad_inicial }}</td>
+                        <td class="number">{{ $insumo->cantidad_consumida }}</td>
+                        <td class="number">{{ $insumo->cantidad_final }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="2">No se encontraron insumos.</td>
+                </tr>
+            @endif
+            </tbody>
+        </table>
+    </main>
+</div>
 </body>
 </html>

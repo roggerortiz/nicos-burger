@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Insumo;
-use App\InsumoProducto;
 use App\Producto;
 
 class InsumoController extends Controller
 {
     public function index()
     {
-        $insumos = Insumo::orderBy('nombre', 'asc')->paginate(10);
+        $insumos = Producto::where('es_insumo', true)->orderBy('nombre', 'asc')->paginate(10);
 
         if(request()->ajax()) {
             return view('insumos.listado', compact('insumos'));
@@ -33,7 +31,11 @@ class InsumoController extends Controller
             'precio.min' => 'El valor de este campo debe ser mayor a 0',
         ]);
 
-        Insumo::create(request()->all());
+        Producto::create([
+            'nombre' => request('nombre'),
+            'precio' => request('precio'),
+            'es_insumo' => true,
+        ]);
 
         return ['success' => true];
     }
@@ -50,7 +52,7 @@ class InsumoController extends Controller
             'precio.min' => 'El valor de este campo debe ser mayor a 0',
         ]);
 
-        $insumo = Insumo::find(request('insumo_id'));
+        $insumo = Producto::find(request('insumo_id'));
 
         if(is_null($insumo)) {
             return ['success' => false, 'errors' => [
@@ -68,7 +70,7 @@ class InsumoController extends Controller
 
     public function eliminar()
     {
-        $insumo = Insumo::find(request('insumo_id'));
+        $insumo = Producto::find(request('insumo_id'));
 
         if(is_null($insumo)) {
             return ['success' => false, 'errors' => [

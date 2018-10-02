@@ -103,9 +103,10 @@
 
             $.post(url, data, function (result) {
                 if(result.success) {
-                    $('#content-insumos').load('{{ route('insumos') }}?page={{ $page }}');
-                    $('#modalInsumo').modal('hide');
-                    toastr.success(($('#insumo_id').val() > 0) ? 'Insumo Actualizado' : 'Insumo Registrado');
+                    $('#content-insumos').load('{{ route('insumos') }}?page={{ $page }}', function () {
+                        $('#modalInsumo').modal('hide');
+                        toastr.success(($('#insumo_id').val() > 0) ? 'Insumo Actualizado' : 'Insumo Registrado');
+                    });
                 } else {
                     $.each(result.errors, function (indexError, messages) {
                         $.each(messages, function (indexMessage, value) {
@@ -130,9 +131,10 @@
 
             $.post(url, data, function (result) {
                 if(result.success) {
-                    $('#content-insumos').load('{{ route('insumos') }}?page={{ $page }}');
-                    $('#modalEliminar').modal('hide');
-                    toastr.success('Insumo Eliminado');
+                    $('#content-insumos').load('{{ route('insumos') }}?page={{ $page }}', function () {
+                        $('#modalEliminar').modal('hide');
+                        toastr.success('Insumo Eliminado');
+                    });
                 } else {
                     $.each(result.errors, function (indexError, messages) {
                         $.each(messages, function (indexMessage, value) {

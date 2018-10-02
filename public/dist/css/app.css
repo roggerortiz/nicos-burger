@@ -32,3 +32,15 @@ form .form-group:last-child {
 ul.pagination {
     margin: 0;
 }
+
+.btn-box-inline {
+    margin-top: 7px !important;
+}
+
+@media (min-width: 200px){
+    .form-inline.form-inline-box .form-control {
+        display: inline-block !important;
+        width: auto !important;
+        vertical-align: middle !important;
+    }
+}

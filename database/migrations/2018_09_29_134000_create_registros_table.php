@@ -16,9 +16,9 @@ class CreateRegistrosTable extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
-            $table->decimal('ventas', 10, 2)->default(0);
-            $table->decimal('gastos', 10, 2)->default(0);
-            $table->decimal('ganancia', 10, 2)->default(0);
+            $table->decimal('ingresos', 10, 2)->default(0);
+            $table->decimal('egresos', 10, 2)->default(0);
+            $table->decimal('total', 10, 2)->default(0);
             $table->timestamps();
         });
     }

@@ -16,13 +16,14 @@ class InsumoProductoController extends Controller
 
         $producto = Producto::find($producto_id);
 
-        $producto->insumos = Insumo::select('insumo_producto.id', 'insumos.nombre', 'insumo_producto.cantidad', 'insumos.id as insumo_id')
-            ->join('insumo_producto', 'insumo_producto.insumo_id', '=', 'insumos.id')
-            ->where('insumo_producto.producto_id', $producto_id)->get();
+        $producto->insumos = Producto::select('insumo_producto.id', 'productos.nombre', 'insumo_producto.cantidad', 'productos.id as insumo_id')
+            ->join('insumo_producto', 'insumo_producto.insumo_id', '=', 'productos.id')
+            ->where('insumo_producto.producto_id', $producto_id)
+            ->where('productos.es_insumo', true)->get();
 
         $ids= $producto->insumos->pluck('id')->toArray();
 
-        $insumos = Insumo::orderBy('nombre', 'asc')->get()->reject(function ($insumo) use ($ids) {
+        $insumos = Producto::orderBy('nombre', 'asc')->where('es_insumo', true)->get()->reject(function ($insumo) use ($ids) {
             return in_array($insumo->id, $ids);
         });
 

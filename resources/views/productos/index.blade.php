@@ -197,12 +197,14 @@
 
             $('#form-insumo').attr('action', '{{ route('productos.insumos.editar') }}');
             $('#insumo_id').val($(this).attr('data-ins')).attr('disabled', true);
-            $('#cantidad').val($(this).attr('data-cant'));
+            $('#cantidad').val($(this).attr('data-cant')).focus().select();
             $('#insumo_producto_id').val($(this).attr('data-id'));
 
             $('#content-ins-table').addClass('hidden');
             $('#content-ins-form').removeClass('hidden');
             $('#content-ins-eliminar').addClass('hidden');
+
+            $('#cantidad').focus().select();
         });
 
         $(document).on('click', '.btn-ins-quitar', function () {

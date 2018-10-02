@@ -1,6 +1,6 @@
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Historial de Registros</h3>
+        <h3 class="box-title">Registros</h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#modalRegistro">
                 <i class="fa fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Nuevo
@@ -13,10 +13,9 @@
                 <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Ventas</th>
-                    <th>Gastos</th>
-                    <th>Ganancia</th>
-                    <th></th>
+                    <th>Ingresos</th>
+                    <th>Egresos</th>
+                    <th>Total</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -25,17 +24,12 @@
                 @foreach($registros as $registro)
                     <tr>
                         <td class="text-center">{{ $registro->fecha }}</td>
-                        <td class="text-center">{{ $registro->ventas }}</td>
-                        <td class="text-center">{{ $registro->gastos }}</td>
-                        <td class="text-center">{{ $registro->ganancia }}</td>
+                        <td class="text-center">{{ $registro->ingresos }}</td>
+                        <td class="text-center">{{ $registro->egresos }}</td>
+                        <td class="text-center">{{ $registro->total }}</td>
                         <td class="action">
-                            <a href="{{ route('registros.ventas', ['id' => $registro->id]) }}" class="btn btn-success btn-sm" title="Ventas">
-                                <span class="fa fa-shopping-cart"></span>
-                            </a>
-                        </td>
-                        <td class="action">
-                            <a href="{{ route('registros.gastos', ['id' => $registro->id]) }}" class="btn btn-warning btn-sm" title="Gastos">
-                                <span class="fa fa-money"></span>
+                            <a href="{{ route('registros.movimientos', ['id' => $registro->id]) }}" class="btn btn-success btn-sm" title="Detalles">
+                                <span class="fa fa-list-alt"></span>
                             </a>
                         </td>
                         <td class="action">
@@ -48,7 +42,7 @@
 
                 @if($registros->count() == 0)
                     <tr>
-                        <td class="text-center" colspan="7">
+                        <td class="text-center" colspan="6">
                             No se encontraron movimientos registrados.
                         </td>
                     </tr>

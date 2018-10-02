@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registro extends Model
 {
-    protected $fillable = ['fecha', 'ventas', 'gastos', 'ganancia'];
+    protected $fillable = ['fecha', 'ingresos', 'egresos', 'total'];
 
     public function getFechaAttribute()
     {

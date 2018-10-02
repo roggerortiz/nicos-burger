@@ -1,10 +1,10 @@
 @extends('app')
 
-@section('title', 'Inicio')
+@section('title', 'Registros')
 
 @section('content')
     <div class="row">
-        <div id="content-registros" class="col-md-12">
+        <div id="content-registros" class="col-md-10 col-md-offset-1">
             @include('registros.listado')
         </div>
     </div>
@@ -52,9 +52,10 @@
 
             $.post(url, data, function (result) {
                 if(result.success) {
-                    $('#content-registros').load('{{ route('inicio') }}?page={{ $page }}');
-                    $("#modalRegistro").modal('hide');
-                    toastr.success('Registro Exitoso');
+                    $('#content-registros').load('{{ route('registros') }}?page={{ $page }}', function () {
+                        $("#modalRegistro").modal('hide');
+                        toastr.success('Registro Exitoso');
+                    });
                 } else {
                     $("#fecha").parent().append($('<label id="fecha-error" class="label-error text-red">').html(result.message));
                 }

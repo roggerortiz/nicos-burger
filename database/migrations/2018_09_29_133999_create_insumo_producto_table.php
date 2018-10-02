@@ -18,7 +18,7 @@ class CreateInsumoProductoTable extends Migration
             $table->unsignedInteger('cantidad');
             $table->unsignedInteger('insumo_id');
             $table->unsignedInteger('producto_id');
-            $table->foreign('insumo_id')->references('id')->on('insumos')->onDelete('restrict');
+            $table->foreign('insumo_id')->references('id')->on('productos')->onDelete('restrict');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict');
             $table->timestamps();
         });

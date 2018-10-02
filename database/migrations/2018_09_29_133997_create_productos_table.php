@@ -16,8 +16,10 @@ class CreateProductosTable extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 50);
-            $table->decimal('precio', 10, 2);
-            $table->unsignedInteger('categoria_id');
+            $table->unsignedInteger('cantidad')->default(0);
+            $table->decimal('precio', 10, 2)->default(0);
+            $table->boolean('es_insumo')->default(false);
+            $table->unsignedInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('restrict');
             $table->timestamps();
         });

@@ -1,3 +1,7 @@
+.page-break {
+    page-break-inside: avoid
+}
+
 .clearfix:after {
     content: "";
     display: table;
@@ -91,9 +95,32 @@ table tbody tr td.number {
     text-align: center;
 }
 
-table.table-middle {
-    width: 50% !important;
+table.w-50,
+table.w-60,
+table.w-70,
+table.w-80,
+table.w-90 {
     margin: 0 auto 15px auto;
+}
+
+table.w-50 {
+    width: 50% !important;
+}
+
+table.w-60 {
+    width: 60% !important;
+}
+
+table.w-70 {
+    width: 70% !important;
+}
+
+table.w-80 {
+    width: 80% !important;
+}
+
+table.w-90 {
+    width: 90% !important;
 }
 
 th.title {
