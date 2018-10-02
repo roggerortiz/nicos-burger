@@ -118,7 +118,7 @@
             $('#modalProductoLabel').html('Editar Producto');
             $('#form-producto').attr('action', '{{ route('productos.editar') }}');
             $('#producto_id').val($(this).attr('data-id'));
-            $('#nombre').val($(this).attr('data-descrip'));
+            $('#nombre').val($(this).attr('data-nomb'));
             $('#precio').val($(this).attr('data-precio'));
             $('#categoria_id').val($(this).attr('data-cat'));
         });
@@ -135,9 +135,10 @@
 
             $.post(url, data, function (result) {
                 if(result.success) {
-                    $('#content-productos').load('{{ route('productos') }}?page={{ $page }}');
-                    $('#modalProducto').modal('hide');
-                    toastr.success(($('#producto_id').val() > 0) ? 'Producto Actualizado' : 'Producto Registrado');
+                    $('#content-productos').load('{{ route('productos') }}?page={{ $page }}', function () {
+                        $('#modalProducto').modal('hide');
+                        toastr.success(($('#producto_id').val() > 0) ? 'Producto Actualizado' : 'Producto Registrado');
+                    });
                 } else {
                     $.each(result.errors, function (indexError, messages) {
                         $.each(messages, function (indexMessage, value) {
@@ -162,9 +163,10 @@
 
             $.post(url, data, function (result) {
                 if(result.success) {
-                    $('#content-productos').load('{{ route('productos') }}?page={{ $page }}');
-                    $('#modalEliminar').modal('hide');
-                    toastr.success('Producto Eliminado');
+                    $('#content-productos').load('{{ route('productos') }}?page={{ $page }}', function () {
+                        $('#modalEliminar').modal('hide');
+                        toastr.success('Producto Eliminado');
+                    });
                 } else {
                     $.each(result.errors, function (indexError, messages) {
                         $.each(messages, function (indexMessage, value) {
@@ -254,7 +256,7 @@
                 }
             }).fail(function (result) {
                 var errors = JSON.parse(result.responseText).errors;
-                console.log(result.responseText);
+
                 $.each(errors, function (indexError, messages) {
                     $.each(messages, function (indexMessage, value) {
                         $('#'+indexError).parent().append($('<label class="label-error text-red">').html(value));
@@ -285,7 +287,7 @@
                 }
             }).fail(function (result) {
                 var errors = JSON.parse(result.responseText).errors;
-                console.log(result.responseText);
+
                 $.each(errors, function (indexError, messages) {
                     $.each(messages, function (indexMessage, value) {
                         $('#'+indexError).parent().append($('<label class="label-error text-red">').html(value));

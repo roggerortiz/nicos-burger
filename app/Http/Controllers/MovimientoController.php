@@ -12,6 +12,10 @@ class MovimientoController extends Controller
     {
         $registro = Registro::find($registro_id);
 
+        if(is_null($registro)) {
+            return redirect()->route('registros');
+        }
+
         $tipo = request('tipo');
 
         $condicion = 'true';
@@ -55,12 +59,6 @@ class MovimientoController extends Controller
                     'Movimiento no registrada.'
                 ]
             ]];
-        }
-
-        if($movimiento->signo = '-1' and !$movimiento->es_gasto) {
-            $insumo = Producto::find($movimiento->producto_id);
-            $insumo->cantidad -= $movimiento->cantidad;
-            $insumo->save();
         }
 
         $movimiento->delete();

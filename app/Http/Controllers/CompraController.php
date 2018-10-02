@@ -11,12 +11,16 @@ class CompraController extends Controller
     {
         $this->validate(request(), [
             'cantidad' => 'required|integer|min:1',
+            'total' => 'required|numeric|min:0.0001',
             'insumo_id' => 'required|integer|exists:productos,id',
             'registro_id' => 'required|integer|exists:registros,id',
         ], [
             'cantidad.required' => 'Este campo es requerido',
             'cantidad.integer' => 'Este campo debe ser entero',
             'cantidad.min' => 'El valor mínimo de este campo es 1',
+            'total.required' => 'Este campo es requerido',
+            'total.numeric' => 'Este campo debe ser decimal',
+            'total.min' => 'El valor de este campo debe ser mayor a 0',
             'insumo_id.required' => 'Este campo es requerido',
             'insumo_id.integer' => 'Este campo debe ser entero',
             'insumo_id.exists' => 'Insumo no encontrado',
@@ -26,13 +30,12 @@ class CompraController extends Controller
         ]);
 
         $insumo = Producto::find(request('insumo_id'));
-        $insumo->cantidad += request('cantidad');
-        $insumo->save();
 
         Movimiento::create([
             'descripcion' => $insumo->nombre,
             'cantidad' => request('cantidad'),
-            'monto' => $insumo->precio,
+            'precio' => request('total') /request('cantidad'),
+            'total' => request('total'),
             'signo' => '-1',
             'producto_id' => $insumo->id,
             'registro_id' => request('registro_id'),
@@ -47,24 +50,26 @@ class CompraController extends Controller
     {
         $this->validate(request(), [
             'cantidad' => 'required|integer|min:1',
+            'total' => 'required|numeric|min:0.0001',
             'movimiento_id' => 'required|integer|exists:movimientos,id',
         ], [
             'cantidad.required' => 'Este campo es requerido',
             'cantidad.integer' => 'Este campo debe ser entero',
             'cantidad.min' => 'El valor mínimo de este campo es 1',
+            'total.required' => 'Este campo es requerido',
+            'total.numeric' => 'Este campo debe ser decimal',
+            'total.min' => 'El valor de este campo debe ser mayor a 0',
             'movimiento_id.required' => 'Este campo es requerido',
             'movimiento_id.integer' => 'Este campo debe ser entero',
             'movimiento_id.exists' => 'Movimiento no encontrado',
         ]);
 
         $compra = Movimiento::find(request('movimiento_id'));
-
-        $insumo = Producto::find($compra->producto_id);
-        $insumo->cantidad -= $compra->cantidad;
-        $insumo->cantidad += request('cantidad');
-        $insumo->save();
-
-        $compra->fill(['cantidad' => request('cantidad')]);
+        $compra->fill([
+            'cantidad' => request('cantidad'),
+            'precio' => request('total') /request('cantidad'),
+            'total' => request('total'),
+        ]);
         $compra->save();
 
         $this->actualizar_totales($compra->registro_id);

@@ -10,13 +10,13 @@ class GastoController extends Controller
     {
         $this->validate(request(), [
             'descripcion' => 'required',
-            'monto' => 'required|numeric|min:0.0001',
+            'total' => 'required|numeric|min:0.0001',
             'registro_id' => 'required|integer|exists:registros,id',
         ], [
             'descripcion.required' => 'Este campo es requerido',
-            'monto.required' => 'Este campo es requerido',
-            'monto.numeric' => 'Este campo debe ser decimal',
-            'monto.min' => 'El valor de este campo debe ser mayor a 0',
+            'total.required' => 'Este campo es requerido',
+            'total.numeric' => 'Este campo debe ser decimal',
+            'total.min' => 'El valor de este campo debe ser mayor a 0',
             'registro_id.required' => 'Este campo es requerido',
             'registro_id.integer' => 'Este campo debe ser entero',
             'registro_id.exists' => 'Registro no encontrado',
@@ -24,7 +24,7 @@ class GastoController extends Controller
 
         Movimiento::create([
             'descripcion' => request('descripcion'),
-            'monto' => request('monto'),
+            'total' => request('total'),
             'signo' => '-1',
             'es_gasto' => true,
             'registro_id' => request('registro_id'),
@@ -39,13 +39,13 @@ class GastoController extends Controller
     {
         $this->validate(request(), [
             'descripcion' => 'required',
-            'monto' => 'required|numeric|min:0.0001',
+            'total' => 'required|numeric|min:0.0001',
             'movimiento_id' => 'required|integer|exists:movimientos,id',
         ], [
             'descripcion.required' => 'Este campo es requerido',
-            'monto.required' => 'Este campo es requerido',
-            'monto.numeric' => 'Este campo debe ser decimal',
-            'monto.min' => 'El valor de este campo debe ser mayor a 0',
+            'total.required' => 'Este campo es requerido',
+            'total.numeric' => 'Este campo debe ser decimal',
+            'total.min' => 'El valor de este campo debe ser mayor a 0',
             'movimiento_id.required' => 'Este campo es requerido',
             'movimiento_id.integer' => 'Este campo debe ser entero',
             'movimiento_id.exists' => 'Movimiento no encontrado',
@@ -54,7 +54,7 @@ class GastoController extends Controller
         $gasto = Movimiento::find(request('movimiento_id'));
         $gasto->fill([
             'descripcion' => request('descripcion'),
-            'monto' => request('monto'),
+            'total' => request('total'),
         ]);
         $gasto->save();
 

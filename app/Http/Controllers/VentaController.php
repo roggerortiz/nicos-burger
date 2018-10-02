@@ -28,19 +28,11 @@ class VentaController extends Controller
 
         $producto = Producto::find(request('producto_id'));
 
-        $insumos_producto = InsumoProducto::where('producto_id', $producto->id)->get();
-
-        foreach ($insumos_producto as $insumo_producto) {
-            $insumo = Producto::find($insumo_producto->insumo_id);
-            $insumo->cantidad -= $insumo_producto->cantidad * request('cantidad');
-            if($insumo->cantidad < 0) $insumo->cantidad = 0;
-            $insumo->save();
-        }
-
         Movimiento::create([
             'descripcion' => $producto->nombre,
             'cantidad' => request('cantidad'),
-            'monto' => $producto->precio,
+            'precio' => $producto->precio,
+            'total' => request('cantidad') * $producto->precio,
             'signo' => '1',
             'producto_id' => $producto->id,
             'registro_id' => request('registro_id'),
@@ -65,8 +57,13 @@ class VentaController extends Controller
             'movimiento_id.exists' => 'Movimiento no encontrado',
         ]);
 
+        $producto = Producto::find(request('producto_id'));
+
         $venta = Movimiento::find(request('movimiento_id'));
-        $venta->fill(['cantidad' => request('cantidad')]);
+        $venta->fill([
+            'cantidad' => request('cantidad'),
+            'total' => request('cantidad') * $producto->precio,
+        ]);
         $venta->save();
 
         $this->actualizar_totales($venta->registro_id);

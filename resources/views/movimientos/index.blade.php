@@ -56,9 +56,9 @@
                             <label>Descripción:</label>
                             <textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Descripción"></textarea>
                         </div>
-                        <div class="form-group hidden" id="div-monto">
+                        <div class="form-group hidden" id="div-total">
                             <label>Monto:</label>
-                            <input type="number" id="monto" min="0.001" name="monto" class="form-control" placeholder="Monto">
+                            <input type="number" id="total" min="0.001" name="total" class="form-control" placeholder="Monto">
                         </div>
                     </form>
                 </div>
@@ -133,7 +133,7 @@
             $('#div-insumo').addClass('hidden');
             $('#div-cantidad').addClass('hidden');
             $('#div-descripcion').addClass('hidden');
-            $('#div-monto').addClass('hidden');
+            $('#div-total').addClass('hidden');
 
             $('#tipo_mov').val('').removeAttr('disabled');
 
@@ -142,7 +142,7 @@
             $('#insumo_id').val('').removeAttr('disabled');
             $('#cantidad').val(1);
             $('#descripcion').val('');
-            $('#monto').val('');
+            $('#total').val('');
         });
 
         $(document).on('click', '.btn-editar', function () {
@@ -163,7 +163,7 @@
                 $('#div-insumo').addClass('hidden');
                 $('#div-cantidad').removeClass('hidden');
                 $('#div-descripcion').addClass('hidden');
-                $('#div-monto').addClass('hidden');
+                $('#div-total').addClass('hidden');
 
                 $('#tipo_mov').val('venta');
 
@@ -172,14 +172,14 @@
                 $('#insumo_id').val('');
                 $('#cantidad').val($(this).attr('data-cant'));
                 $('#descripcion').val('');
-                $('#monto').val('');
+                $('#total').val('');
             } else {
                 if(gasto == '1') {
                     $('#div-producto').addClass('hidden');
                     $('#div-insumo').addClass('hidden');
                     $('#div-cantidad').addClass('hidden');
                     $('#div-descripcion').removeClass('hidden');
-                    $('#div-monto').removeClass('hidden');
+                    $('#div-total').removeClass('hidden');
 
                     $('#tipo_mov').val('gasto');
 
@@ -188,13 +188,13 @@
                     $('#insumo_id').val('');
                     $('#cantidad').val('');
                     $('#descripcion').val($(this).attr('data-descrip'));
-                    $('#monto').val($(this).attr('data-monto'));
+                    $('#total').val($(this).attr('data-total'));
                 } else {
                     $('#div-producto').addClass('hidden');
                     $('#div-insumo').removeClass('hidden');
                     $('#div-cantidad').removeClass('hidden');
                     $('#div-descripcion').addClass('hidden');
-                    $('#div-monto').addClass('hidden');
+                    $('#div-total').addClass('hidden');
 
                     $('#tipo_mov').val('compra');
 
@@ -203,7 +203,7 @@
                     $('#insumo_id').val($(this).attr('data-prod'));
                     $('#cantidad').val($(this).attr('data-cant'));
                     $('#descripcion').val('');
-                    $('#monto').val('');
+                    $('#total').val('');
                 }
             }
         });
@@ -217,35 +217,35 @@
             $('#insumo_id').val('');
             $('#cantidad').val('');
             $('#descripcion').val('');
-            $('#monto').val('');
+            $('#total').val('');
 
             if($(this).val() == 'venta') {
                 $('#div-producto').removeClass('hidden');
                 $('#div-insumo').addClass('hidden');
                 $('#div-cantidad').removeClass('hidden');
                 $('#div-descripcion').addClass('hidden');
-                $('#div-monto').addClass('hidden');
+                $('#div-total').addClass('hidden');
                 $('#producto_id').focus();
             } else if($(this).val() == 'compra') {
                 $('#div-producto').addClass('hidden');
                 $('#div-insumo').removeClass('hidden');
                 $('#div-cantidad').removeClass('hidden');
                 $('#div-descripcion').addClass('hidden');
-                $('#div-monto').addClass('hidden');
+                $('#div-total').removeClass('hidden');
                 $('#insumo_id').focus();
             } else if($(this).val() == 'gasto') {
                 $('#div-producto').addClass('hidden');
                 $('#div-insumo').addClass('hidden');
                 $('#div-cantidad').addClass('hidden');
                 $('#div-descripcion').removeClass('hidden');
-                $('#div-monto').removeClass('hidden');
+                $('#div-total').removeClass('hidden');
                 $('#descripcion').focus();
             } else {
                 $('#div-producto').addClass('hidden');
                 $('#div-insumo').addClass('hidden');
                 $('#div-cantidad').addClass('hidden');
                 $('#div-descripcion').addClass('hidden');
-                $('#div-monto').addClass('hidden');
+                $('#div-total').addClass('hidden');
             }
         });
 
@@ -287,7 +287,7 @@
                         $('#insumo_id').val('');
                         $('#cantidad').val(1);
                         $('#descripcion').val('');
-                        $('#monto').val('');
+                        $('#total').val('');
                     }
 
                     toastr.success(($('#movimiento_id').val() > 0) ? 'Movimiento Editado' : 'Movimiento Registrado');
@@ -300,7 +300,7 @@
                 }
             }).fail(function (result) {
                 var errors = JSON.parse(result.responseText).errors;
-                console.log(result.responseText);
+
                 $.each(errors, function (indexError, messages) {
                     $.each(messages, function (indexMessage, value) {
                         $('#'+indexError).parent().append($('<label class="label-error text-red">').html(value));

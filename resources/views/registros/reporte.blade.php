@@ -23,7 +23,7 @@
                 <th>Categoría</th>
                 <th>Producto</th>
                 <th class="number">Cantidad</th>
-                <th class="money">Precio</th>
+                <th class="money">Precio Unit.</th>
                 <th class="money">Total</th>
             </tr>
         </thead>
@@ -39,7 +39,7 @@
                         @endif
                         <td>{{ $venta->descripcion }}</td>
                         <td class="number">{{ $venta->cantidad }}</td>
-                        <td class="money">{{ $venta->monto }}</td>
+                        <td class="money">{{ $venta->precio }}</td>
                         <td class="money">{{ $venta->total }}</td>
                     </tr>
                 @endforeach
@@ -54,34 +54,35 @@
 </main>
 
 <header class="clearfix">
+    <div id="project"></div>
     <div id="project">
-        <strong>COMPRAS</strong>
+        <strong>INSUMOS CONSUMIDOS</strong>
     </div>
 </header>
 
-<main>
-    <table class="w-80">
+<main class="">
+    <table class="w-60">
         <thead>
         <tr>
-            <th>Insumo</th>
-            <th class="number">Cantidad</th>
-            <th class="money">Precio</th>
-            <th class="money">Total</th>
+            <th>Nombre</th>
+            <th>Cant. Inicial</th>
+            <th>Cant. Consumida</th>
+            <th>Cant. Final</th>
         </tr>
         </thead>
         <tbody>
-        @if($compras->count() > 0)
-            @foreach($compras as $compra)
+        @if($insumos->count() > 0)
+            @foreach($insumos as $insumo)
                 <tr>
-                    <td>{{ $compra->descripcion }}</td>
-                    <td class="number">{{ $compra->cantidad }}</td>
-                    <td class="money">{{ $compra->monto }}</td>
-                    <td class="money">{{ $compra->total }}</td>
+                    <td>{{ $insumo->nombre }}</td>
+                    <td class="number">{{ $insumo->cantidad_inicial }}</td>
+                    <td class="number">{{ $insumo->cantidad_consumida }}</td>
+                    <td class="number">{{ $insumo->cantidad_final }}</td>
                 </tr>
             @endforeach
         @else
             <tr>
-                <td colspan="4">No se encontraron compras registradas.</td>
+                <td colspan="2">No se encontraron insumos.</td>
             </tr>
         @endif
         </tbody>
@@ -107,7 +108,7 @@
             @foreach($gastos as $gasto)
                 <tr>
                     <td class="text-left">{{ $gasto->descripcion }}</td>
-                    <td class="money">{{ $gasto->monto }}</td>
+                    <td class="money">{{ $gasto->total }}</td>
                 </tr>
             @endforeach
         @else
@@ -146,35 +147,34 @@
 
 <div class="page-break">
     <header class="clearfix">
-        <div id="project"></div>
         <div id="project">
-            <strong>INSUMOS CONSUMIDOS</strong>
+            <strong>COMPRAS</strong>
         </div>
     </header>
 
-    <main class="">
-        <table class="w-60">
+    <main>
+        <table class="w-80">
             <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Cant. Inicial</th>
-                <th>Cant. Consumida</th>
-                <th>Cant. Final</th>
+                <th>Insumo</th>
+                <th class="number">Cantidad</th>
+                <th class="money">Precio Unit.</th>
+                <th class="money">Total</th>
             </tr>
             </thead>
             <tbody>
-            @if($insumos->count() > 0)
-                @foreach($insumos as $insumo)
+            @if($compras->count() > 0)
+                @foreach($compras as $compra)
                     <tr>
-                        <td>{{ $insumo->nombre }}</td>
-                        <td class="number">{{ $insumo->cantidad_inicial }}</td>
-                        <td class="number">{{ $insumo->cantidad_consumida }}</td>
-                        <td class="number">{{ $insumo->cantidad_final }}</td>
+                        <td>{{ $compra->descripcion }}</td>
+                        <td class="number">{{ $compra->cantidad }}</td>
+                        <td class="money">{{ $compra->precio }}</td>
+                        <td class="money">{{ $compra->total }}</td>
                     </tr>
                 @endforeach
             @else
                 <tr>
-                    <td colspan="2">No se encontraron insumos.</td>
+                    <td colspan="4">No se encontraron compras registradas.</td>
                 </tr>
             @endif
             </tbody>

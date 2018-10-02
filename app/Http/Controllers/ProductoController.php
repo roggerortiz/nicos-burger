@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\InsumoProducto;
 use App\Producto;
 
 class ProductoController extends Controller
@@ -87,6 +88,8 @@ class ProductoController extends Controller
                 ]
             ]];
         }
+
+        InsumoProducto::where('producto_id', $producto->id)->delete();
 
         $producto->delete();
 

@@ -23,17 +23,13 @@ class InsumoController extends Controller
     {
         $this->validate(request(), [
             'nombre' => 'required',
-            'precio' => 'required|numeric|min:0.0001',
         ], [
             'nombre.required' => 'Este campo es requerido',
-            'precio.required' => 'Este campo es requerido',
-            'precio.numeric' => 'Este campo debe ser decimal',
-            'precio.min' => 'El valor de este campo debe ser mayor a 0',
         ]);
 
         Producto::create([
             'nombre' => request('nombre'),
-            'precio' => request('precio'),
+            'precio' => (request('precio') > 0) ? request('precio') : null,
             'es_insumo' => true,
         ]);
 
@@ -44,12 +40,8 @@ class InsumoController extends Controller
     {
         $this->validate(request(), [
             'nombre' => 'required',
-            'precio' => 'required|numeric|min:0.0001',
         ], [
             'nombre.required' => 'Este campo es requerido',
-            'precio.required' => 'Este campo es requerido',
-            'precio.numeric' => 'Este campo debe ser decimal',
-            'precio.min' => 'El valor de este campo debe ser mayor a 0',
         ]);
 
         $insumo = Producto::find(request('insumo_id'));
@@ -62,7 +54,11 @@ class InsumoController extends Controller
             ]];
         }
 
-        $insumo->fill(request()->all());
+        $insumo->fill([
+            'nombre' => request('nombre'),
+            'precio' => (request('precio') > 0) ? request('precio') : null,
+            'es_insumo' => true,
+        ]);
         $insumo->save();
 
         return ['success' => true];

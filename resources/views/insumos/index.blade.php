@@ -79,7 +79,6 @@
             $('#form-insumo').attr('action', '{{ route('insumos.crear') }}');
             $('#insumo_id').val('');
             $('#nombre').val('');
-            $('#precio').val('1.00');
         });
 
         $(document).on('click', '.btn-editar', function () {

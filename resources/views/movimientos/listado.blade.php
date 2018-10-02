@@ -42,7 +42,7 @@
                     @if($tipo != 'gasto')
                     <th>Cantidad</th>
                     @endif
-                    <th>Monto</th>
+                    <th>Precio Unit.</th>
                     @if($tipo != 'gasto')
                     <th>Total</th>
                     @endif
@@ -57,12 +57,12 @@
                         @if($tipo != 'gasto')
                         <td class="text-center">{{ $movimiento->cantidad }}</td>
                         @endif
-                        <td class="text-center">{{ $movimiento->monto }}</td>
+                        <td class="text-center">{{ $movimiento->total }}</td>
                         @if($tipo != 'gasto')
                         <td class="text-center">{{ $movimiento->total }}</td>
                         @endif
                         <td class="action">
-                            <button type="button" class="btn btn-warning btn-editar btn-sm" title="Editar" data-toggle="modal" data-target="#modalMovimiento" data-id="{{ $movimiento->id }}" data-signo="{{ $movimiento->signo }}" data-gasto="{{ $movimiento->es_gasto }}" data-cant="{{ $movimiento->cantidad }}" data-descrip="{{ $movimiento->descripcion }}" data-monto="{{ $movimiento->monto }}" data-prod="{{ $movimiento->producto_id }}">
+                            <button type="button" class="btn btn-warning btn-editar btn-sm" title="Editar" data-toggle="modal" data-target="#modalMovimiento" data-id="{{ $movimiento->id }}" data-signo="{{ $movimiento->signo }}" data-gasto="{{ $movimiento->es_gasto }}" data-cant="{{ $movimiento->cantidad }}" data-descrip="{{ $movimiento->descripcion }}" data-total="{{ $movimiento->total }}" data-prod="{{ $movimiento->producto_id }}">
                                 <span class="fa fa-pencil-square-o"></span>
                             </button>
                         </td>
